@@ -13,31 +13,33 @@
 }
 
 	
-	body{margin: 0 auto; background:#ffe73b; background-size: 100%;}
+	body{margin: 0 auto; background:#ffe73b; background-size: 100%; overflow: hidden;}
 
-	header{background: #0029d3;}
+	header{background: #0029d3;width: 100%;}
 	body, section, h1, p{text-align: center; word-break:keep-all; color: black; 
 		font-family: 'BMDOHYEON'; font-size: 1.1em; line-height:  1.7; word-spacing: 3px;}
 	section{margin: 0 auto; margin-top: 25px; margin-bottom: 30px; width: 750px;}	
  
 
 	.gif{background: url(tittle.png); animation:infinite linear;
-		height:120px; animation-name: gif; animation-duration:3s; background-size:auto 120px;}	
+		height:120px; animation-name: gif; animation-duration:3s; background-size:auto 120px; }	
 		@keyframes gif {to{background-position: -1500px 0px;}}
+
+		
 	/*gif가 자꾸 튀는 현상*/
 
 	.box{width: 50px; height: 50px; border-radius: 10%; background: black;}
-	.specialbox{width: 50px; height: 50px; border-radius: 10%; background: #ffe73b;}
+	.specialbox{width: 50px; height: 50px; border-radius: 10%; background: #e90081; opacity: 1;}
 
 	/*.specialbox2{width: 50px; height: 50px; border-radius: 10%; background: #7d00f7;*/
 		/*position: absolute; left: 32.2vw; top: 281px}고정된 상태에서 시작하기 실패*/
 
-	.specialbox2{width: 50px; height: 50px; border-radius: 10%; background: url(specialbox.png);
+	.specialbox2{opacity: 1; width: 50px; height: 50px; border-radius: 10%; background: url(specialbox.png);
 		position: absolute; left: 32.2vw; top: 281px}
 
 	.flex{display:flex; justify-content: space-around; margin: 20px;}
 	.container
-
+	
 	</style>
 
 
@@ -48,7 +50,7 @@
 	</header>
 
 <section>
-	<h1>느낌이 오는 저 한 자리를 잡아야 내가 콘서트를 간다</h1>
+	<h1>느낌이 오는 <span style="color:  #e90081;">저 한 자리</span>를 잡아야 내가 콘서트를 간다</h1>
 </section>
 
 
@@ -69,7 +71,7 @@
 
 <div class = 'flex container'>
 		<div class='box'></div>
-		<div class='specialbox'></div>
+		<div class='specialbox' id="specialbox"></div>
 		<div class='box'></div>
 		<div class='box'></div>
 		<div class='box'></div>
@@ -138,13 +140,13 @@
 
 		var a = document.createElement('div');
 		
-		a.id = 'square';
+		a.id = 'specialbox2';
 		a.className = 'specialbox2';
 
 		var b = Math.random()*window.innerWidth;
 		var c = Math.random()*window.innerHeight;
 
-		a.style.left = b + 'px';
+		a.style.left =  b + 'px';
 		a.style.top = c + 'px';
 
 		a.onclick = function(){
@@ -152,14 +154,14 @@
 		}
 		document.body.appendChild(a)
 
-		
 	}
+
 
 	 function result(){
 	            alert("이번에도 안방 1열");	 
 	}
 
-	makeBox();
+	
 	// 호출한 것
 
 
@@ -172,9 +174,24 @@
 		}
 		else hSnd.stop();
 	}
+
+
+
+
 	
 	hSnd.onended =  function ChnImg(){
 		document.getElementById("startBut").src = "but2.png";
+		
+		
+		{var element = document.getElementById('specialbox');
+		element.style.opacity = "0"; }
+
+		makeBox();
+		
+		setTimeout(result,62000);
+		var time = 60;
+	    var min = "1";
+	    var sec = "60";
 
 	    var x = setInterval(function () {
 	        min = parseInt(time / 60);
@@ -190,10 +207,6 @@
 	    }, 1000);
 	};
 			
-	setTimeout(result,62000);
-	var time = 60;
-    var min = "1"
-    var sec = "60"
 
 
 	// 소리 다시 안나오게 하려면??
